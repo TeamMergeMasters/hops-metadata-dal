@@ -15,19 +15,21 @@
  */
 package io.hops.metadata.hdfs.entity;
 
+import java.util.Set;
+
 public class PendingBlockInfo {
 
   private long blockId;
   private int inodeId;
   private long timeStamp;
-  private int numReplicas;
+  private Set<Integer> storageIds;
 
   public PendingBlockInfo(long blockId, int inodeId, long timestamp,
-      int numReplicas) {
+      Set<Integer> storageIds) {
     this.blockId = blockId;
     this.inodeId = inodeId;
     this.timeStamp = timestamp;
-    this.numReplicas = numReplicas;
+    this.storageIds = storageIds;
   }
 
   public long getBlockId() {
@@ -51,15 +53,14 @@ public class PendingBlockInfo {
   }
 
   public int getNumReplicas() {
-    return numReplicas;
+    return storageIds.size();
   }
-
-  public void setNumReplicas(int numReplicas) {
-    this.numReplicas = numReplicas;
+  
+  public void setStorageIds(Set<Integer> storageIds){
+    this.storageIds = storageIds;
   }
-
+  
   public void setInodeId(int inodeId) {
     this.inodeId = inodeId;
   }
-  
 }
